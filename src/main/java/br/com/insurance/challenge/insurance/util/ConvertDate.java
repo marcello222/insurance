@@ -10,7 +10,7 @@ public class ConvertDate {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         if (dateString != null) {
             return formato.parse(dateString);
-        }else {
+        } else {
             return null;
         }
     }

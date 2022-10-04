@@ -37,9 +37,11 @@ public class ApoliceController {
 
     @RequestMapping(path = "/alter", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void alterPolicy(@RequestBody ApoliceDto apoliceDto) throws ParseException {
-        apoliceDto.setDataAlteracaoRegistro(ConvertDate.convertDateToString(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        apoliceDto.setDataAlteracaoRegistro(ConvertDate.convertDateToString(Date.from(LocalDate.now()
+                .atStartOfDay(ZoneId.systemDefault()).toInstant())));
         for (ParcelaDto parcelaDto : apoliceDto.getParcelas()) {
-            parcelaDto.setDataAlteracaoRegistro(ConvertDate.convertDateToString(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())));
+            parcelaDto.setDataAlteracaoRegistro(ConvertDate.convertDateToString(Date.from(LocalDate.now()
+                    .atStartOfDay(ZoneId.systemDefault()).toInstant())));
         }
         apoliceService.savePolicyService(apoliceDto);
     }

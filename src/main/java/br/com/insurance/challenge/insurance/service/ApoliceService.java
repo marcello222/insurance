@@ -22,8 +22,6 @@ public class ApoliceService {
     @Autowired
     ApoliceRepository apoliceRepository;
 
-    ConvertDate convertDate = new ConvertDate();
-
     public void savePolicyService(ApoliceDto apoliceDto) throws ParseException {
 
         Apolice apolice = new Apolice();
@@ -57,7 +55,6 @@ public class ApoliceService {
         }
 
         apolice.setParcelas(parcelaList);
-
         apoliceRepository.save(apolice);
     }
 

@@ -10,15 +10,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class InsuranceApplication {
 
-	@Bean
-	public ModelMapper modelMapper(){
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setSkipNullEnabled(true);
-		return modelMapper;
-	}
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        return modelMapper;
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(InsuranceApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(InsuranceApplication.class, args);
+    }
 }

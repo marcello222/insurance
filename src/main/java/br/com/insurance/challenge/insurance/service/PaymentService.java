@@ -40,18 +40,21 @@ public class PaymentService {
                 int diasVencidos = (int) ChronoUnit.DAYS.between(parcela.getDataPagamento().
                                 toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                         LocalDate.parse(dataAtual));
-                if (diasVencidos >= 0) {
+
+                if (diasVencidos == 0) {
                     parcela.setDataPago(ConvertDate.convertStringToDate(dataAtual));
                 } else {
-                    int multiply = diasVencidos * -1;
                     if (parcela.getFormaPagamento().equalsIgnoreCase("CARTAO")) {
-                        parcela.setJuros(BigDecimal.valueOf(multiply * JUROS_CARTAO));
+                        parcela.setJuros(BigDecimal.valueOf(diasVencidos * JUROS_CARTAO));
+                        parcela.setPremio(parcela.getPremio().add(parcela.getJuros()));
                     }
                     if (parcela.getFormaPagamento().equalsIgnoreCase("DINHEIRO")) {
-                        parcela.setJuros(BigDecimal.valueOf(multiply * JUROS_DINHEIRO));
+                        parcela.setJuros(BigDecimal.valueOf(diasVencidos * JUROS_DINHEIRO));
+                        parcela.setPremio(parcela.getPremio().add(parcela.getJuros()));
                     }
                     if (parcela.getFormaPagamento().equalsIgnoreCase("BOLETO")) {
-                        parcela.setJuros(BigDecimal.valueOf(multiply * JUROS_BOLETO));
+                        parcela.setJuros(BigDecimal.valueOf(diasVencidos * JUROS_BOLETO));
+                        parcela.setPremio(parcela.getPremio().add(parcela.getJuros()));
                     }
                 }
             }

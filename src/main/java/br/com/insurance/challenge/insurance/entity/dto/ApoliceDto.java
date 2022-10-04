@@ -23,5 +23,6 @@ public class ApoliceDto {
     private String dataAlteracaoRegistro;
     private Integer usuarioCriacaoRegistro;
     private Integer usuarioAlteracaoRegistro;
+
     private List<ParcelaDto> parcelas;
 }
